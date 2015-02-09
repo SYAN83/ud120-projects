@@ -31,11 +31,12 @@ gnb = GaussianNB()
 
 t0 = time()
 gnb.fit(features_train, labels_train)
-print "training time:", round(time()-t0, 3), "s"
-
+str1 = "training time: "   + str(round(time()-t0, 3)) + "s"
+print str1
 t1 = time()
 labels_pred = gnb.predict(features_test)
-print "predicting time:", round(time()-t1, 3), "s"
+str2 = "predicting time: " + str(round(time()-t1, 3)) + "s"
+print str2
 
 from sklearn.metrics import accuracy_score
 accuracy = accuracy_score(labels_pred, labels_test)
@@ -43,4 +44,11 @@ print accuracy
 
 #########################################################
 
+out = open('output.txt', 'w')
 
+out.write('sklearn.naive_bayes.GaussianNB\n\n')
+out.write(str1 + '\n')
+out.write(str2 + '\n')
+out.write('Accuracy: ' + str(accuracy))
+
+out.close()
