@@ -30,6 +30,10 @@ features_train, features_test, labels_train, labels_test = preprocess()
 from sklearn.svm import SVC
 svc = SVC(kernel = 'linear')
 
+### slice the training dataset down to 1% 
+features_train = features_train[:len(features_train)/100] 
+labels_train = labels_train[:len(labels_train)/100] 
+
 t0 = time()
 svc.fit(features_train, labels_train)
 str1 = "training time: " + str(round(time()-t0, 3)) + "s"
@@ -46,7 +50,7 @@ print accuracy
 
 #########################################################
 
-out = open('output.txt', 'w')
+out = open('output_1.txt', 'w')
 
 out.write('sklearn.svm.SVC(kernel = \'linear\')\n')
 out.write(str1 + '\n')
